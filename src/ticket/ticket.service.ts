@@ -37,7 +37,7 @@ export class TicketService {
   }
 
   updated(id: number, numplase: number) {
-    console.log('servis');
+    console.log('servis num plase');
     return this.repo.update({id},{numplaces:numplase})
   }
 

@@ -8,6 +8,12 @@ import { Ordering } from './ordering/entities/ordering.entity';
 import { OrderingModule } from './ordering/ordering.module';
 import { Passenger } from './passengers/entities/passenger.entity';
 import { PassengersModule } from './passengers/passengers.module';
+import { JwtModule } from '@nestjs/jwt';
+import { ManagerModule } from './manager/manager.module';
+import { PassengerforReservationModule } from './passengerfor-reservation/passengerfor-reservation.module';
+import { ReservationModule } from './reservation/reservation.module';
+import { Reservation } from './reservation/entities/reservation.entity';
+import { PassengerforReservation } from './passengerfor-reservation/entities/passengerfor-reservation.entity';
 
 
 @Module({
@@ -19,13 +25,16 @@ import { PassengersModule } from './passengers/passengers.module';
       username: 'postgres',
       password: 'ouri1q2w',
       database: 'flight',
-      entities: [Ticket, Ordering, Passenger],
+      entities: [Ticket, Ordering, Passenger,Reservation,PassengerforReservation],
       logging: true,
       synchronize: true,
     }),
     TicketModule,
     OrderingModule,
-    PassengersModule
+    PassengersModule,
+    ManagerModule,
+    ReservationModule,
+    PassengerforReservationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

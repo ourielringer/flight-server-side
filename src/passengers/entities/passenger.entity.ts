@@ -1,24 +1,15 @@
+import { Reservation } from "src/reservation/entities/reservation.entity"
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm"
-import { Ordering } from "src/ordering/entities/ordering.entity";
 
 @Entity()
 export class Passenger {
 
-    @ManyToOne(() => Ordering, order => order.passengers)
-    idorder: number;
-
-    @Column()
-    idflightgo: number
-
-    @Column()
-    idflightback: number
-
-    @Column()
-    name: string
-
     @Column()
     @PrimaryGeneratedColumn()
     id: number
+
+    @Column()
+    firstname: string
 
     @Column()
     lastname: string
@@ -34,4 +25,7 @@ export class Passenger {
 
     @Column()
     sity: string
+
+    @Column()
+    idReservation:number
 }

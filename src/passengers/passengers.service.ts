@@ -8,34 +8,29 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class PassengersService {
 
-  constructor(@InjectRepository(Passenger) private readonly repo: Repository<Passenger>){}
+  constructor(@InjectRepository(Passenger) private readonly repo: Repository<Passenger>) { }
 
 
-  addPssenger(createPassengerDto: CreatePassengerDto) {
+  addPssenger(createPassengerDto: CreatePassengerDto) {    
+    let pasenger = new Passenger
+    pasenger.firstname = createPassengerDto.firstname
+    pasenger.lastname = createPassengerDto.lastname
+    pasenger.ID = createPassengerDto.ID
+    pasenger.MorMr = createPassengerDto.MorMr
+    pasenger.age = createPassengerDto.age
+    pasenger.sity = createPassengerDto.sity
+    pasenger.idReservation = createPassengerDto.idReservation
+    return this.repo.save(pasenger)
+  }
 
-   let pasenger = new Passenger
-   pasenger.name = createPassengerDto.firstname
-   pasenger.lastname = createPassengerDto.lastname
-   pasenger.ID = createPassengerDto.id
-   pasenger.MorMr = createPassengerDto.MorMr
-   pasenger.age = createPassengerDto.age
-   pasenger.sity = createPassengerDto.sity
-   pasenger.idorder = createPassengerDto.idorder
-   pasenger.idflightgo = createPassengerDto.idflightgo
-   pasenger.idflightback = createPassengerDto.idflightback
-
-
-   return  this.repo.save(pasenger)   
- }
-
- findAll() {
-   return `This action returns all passengers`;
- }
+  findAll() {
+    return `This action returns all passengers`;
+  }
 
   findOne(id: number) {
-    console.log('servic' ,id);
-    
-    return this.repo.find({where:{ idorder : id}})
+    console.log('servic', id);
+
+    return this.repo.find({ where: { idorder: id } })
   }
 
   update(id: number, updatePassengerDto: UpdatePassengerDto) {

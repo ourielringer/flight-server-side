@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete ,Headers} from '@nestjs/common';
 import { PassengersService } from './passengers.service';
 import { CreatePassengerDto } from './dto/create-passenger.dto';
 import { UpdatePassengerDto } from './dto/update-passenger.dto';
@@ -8,8 +8,10 @@ export class PassengersController {
   constructor(private readonly passengersService: PassengersService) {}
 
   @Post()
-  addPssenger(@Body() createPassengerDto: CreatePassengerDto) {
-    console.log('controler' , createPassengerDto);
+  addPssenger(@Body() createPassengerDto : CreatePassengerDto,@Headers() header) {
+    console.log('header ',header);
+    
+    console.log('controlerrr' , createPassengerDto);
     return this.passengersService.addPssenger(createPassengerDto);
   }
 

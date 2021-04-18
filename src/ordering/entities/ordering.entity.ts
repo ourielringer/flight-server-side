@@ -5,9 +5,6 @@ import { Passenger } from "src/passengers/entities/passenger.entity";
 @Entity()
 export class Ordering {
 
-    @OneToMany(()=> Passenger,passenger => passenger.idorder)
-    passengers:Passenger[]
-
     @PrimaryGeneratedColumn()
     id : number
 
@@ -19,6 +16,9 @@ export class Ordering {
 
     @Column()
     phonenumber : number
+
+    @Column({nullable:true})
+    rolse : string
 
     @Column()
     password : string

@@ -1,4 +1,5 @@
-import { Column, Entity, BaseEntity, PrimaryGeneratedColumn } from "typeorm"
+import { Reservation } from "src/reservation/entities/reservation.entity"
+import { Column, Entity, BaseEntity, PrimaryGeneratedColumn, ManyToOne } from "typeorm"
 
 @Entity()
 export class Ticket extends BaseEntity{
@@ -33,13 +34,4 @@ export class Ticket extends BaseEntity{
 
     @Column()
     numplaces:number
-
-    // @Column()
-    // numFreeplaces:number
-    
 }
-// constructor(public numOfFlight:string,public from:string, public fromhour:string, public to:string, 
-//     public tohour:string, public date:string, public price:string, public companyName:string,
-//     public numplaces:string ){}
-
-//     public numFreeplaces:string = this.numplaces

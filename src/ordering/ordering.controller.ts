@@ -1,29 +1,35 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query, UseGuards, SetMetadata } from '@nestjs/common';
 import { OrderingService } from './ordering.service';
 import { CreateOrderingDto } from './dto/create-ordering.dto';
 import { UpdateOrderingDto } from './dto/update-ordering.dto';
+import { AdminGuard } from './admin.guard';
 
 @Controller('ordering')
+@UseGuards(AdminGuard)
 export class OrderingController {
   constructor(private readonly orderingService: OrderingService) {}
 
   @Post()
   createOrder(@Body() createOrderingDto: CreateOrderingDto) {
-    console.log('controler');
+    console.log('controler', createOrderingDto);
     return this.orderingService.createOrder(createOrderingDto);
   }
 
   @Get()
   findAll() {
-    
-    
     return this.orderingService.findAll();
   }
 
   @Get('findone')
-  findOne(@Query() obj) {
-    console.log(obj ,'controler');
-    return this.orderingService.findOne(obj);
+  findOne(@Query() createOrderingDto: CreateOrderingDto) {
+    return this.orderingService.findOne(createOrderingDto);
+  }
+
+  @Get('permition')
+  @SetMetadata('roles', ['admin'])
+  permition(@Query() createOrderingDto: CreateOrderingDto) {
+    console.log(createOrderingDto ,'controler');
+    return this.orderingService.findOne(createOrderingDto);
   }
 
   // @Put(':id')

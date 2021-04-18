@@ -1,4 +1,5 @@
-import { IsString, IsNumber } from "class-validator"
+import { IsString, IsNumber, IsObject } from "class-validator"
+import { Reservation } from "src/reservation/entities/reservation.entity"
 
 export class CreatePassengerDto {
 
@@ -19,15 +20,7 @@ export class CreatePassengerDto {
 
   @IsString()
   sity: string
-
-  id: number
   
   @IsNumber()
-  idorder:number
-
-  @IsNumber()
-  idflightgo:number
-
-  @IsNumber()
-  idflightback:number
+  idReservation: number
 }
